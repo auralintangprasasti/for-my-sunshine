@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Sunshine ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #e9bdc9;
+  --rose: #bd8194;
+  --dark: #805968;
+  --cream: #fff9f0;
+  --paper: #fffaf4;
+  --brown: #aa897f;
+  --line: #e8d3cc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #f4e4e5;
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* BACKGROUND */
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 20%, #f8dce4, transparent 35%),
+    radial-gradient(circle at 85% 80%, #ead0d8, transparent 35%),
+    #f4e4e5;
+}
+
+.floating {
+  position: fixed;
+  color: #c38b9c;
+  opacity: .35;
+  pointer-events: none;
+  animation: float 5s ease-in-out infinite;
+}
+
+.f1 { top: 12%; left: 7%; font-size: 25px; }
+.f2 { top: 75%; right: 8%; font-size: 30px; animation-delay: 1s; }
+.f3 { bottom: 12%; left: 12%; font-size: 20px; animation-delay: 2s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(7deg); }
+}
+
+/* MAIN BOOK */
+
+.app {
+  width: 100%;
+  max-width: 760px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 30px 18px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #a47785;
+}
+
+.topbar span:last-child {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  letter-spacing: 0;
+}
+
+.book {
+  width: 100%;
+  min-height: 580px;
+  position: relative;
+  background: var(--paper);
+  border: 1px solid #e8d2d0;
+  border-radius: 5px;
+  box-shadow: 8px 10px 0 #d9b9bf, 0 20px 50px #9b647326;
+  overflow: hidden;
+}
+
+.book::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  background-image: radial-gradient(#c9a9a0 .6px, transparent .6px);
+  background-size: 7px 7px;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  padding: 35px 30px 30px;
+  display: none;
+  overflow-y: auto;
+  z-index: 1;
+  animation: pageIn .45s ease;
+}
+
+.page.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.page-number {
+  position: absolute;
+  bottom: 17px;
+  right: 22px;
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: #bd91a0;
+}
+
+.tiny-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #b68a96;
+  text-align: center;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 6vw, 43px);
+  font-weight: 500;
+  color: #b5798c;
+  text-align: center;
+}
+
+.handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+/* DECORATIONS */
+
+.sticker {
+  position: absolute;
+  font-size: 25px;
+}
+
+.sticker.one { top: 20px; left: 22px; }
+.sticker.two { top: 25px; right: 23px; }
+.sticker.three { bottom: 45px; left: 25px; }
+
+.tape {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 85px;
+  height: 23px;
+  background: #e9bdc9a8;
+  z-index: 3;
+}
+
+
+/* VINYL MUSIC PLAYER */
+.music-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 20;
+  width: 62px;
+  height: 62px;
+  border: 1px solid #d9b0bb;
+  border-radius: 50%;
+  background: #fff9f5;
+  box-shadow: 0 5px 16px #9b647333;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.vinyl-disc {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle, #f8dce4 0 4px, #9f657a 4.5px 6px,
+    #29232a 6.5px 8px, #393039 8.5px 10px, #17151a 10.5px 100%);
+  box-shadow: inset 0 0 0 2px #51434b, 0 1px 3px #80596866;
+  transition: transform .2s ease;
+}
+
+.vinyl-disc::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff1f3;
+  border: 1px solid #b5798c;
+}
+
+.music-toggle.playing .vinyl-disc {
+  animation: vinylSpin 3s linear infinite;
+}
+
+@keyframes vinylSpin {
+  to { transform: rotate(360deg); }
+}
+
+.music-toggle:focus-visible {
+  outline: 3px solid #bd8194;
+  outline-offset: 4px;
+}
+
+@media (max-width: 500px) {
+  .music-toggle {
+    right: 16px;
+    bottom: 16px;
+    width: 56px;
+    height: 56px;
+  }
+  .vinyl-disc { width: 39px; height: 39px; }
+}
+
+/* BUTTONS */
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.nav button, .action-btn {
+  border: 1px solid #d9b0bb;
+  background: #fff9f5;
+  color: #a87587;
+  border-radius: 25px;
+  padding: 11px 20px;
+  font-size: 12px;
+  transition: .25s;
+}
+
+.nav button:hover, .action-btn:hover {
+  background: #d9a8b7;
+  color: white;
+}
+
+.nav button:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
+.dots {
+  display: flex;
+  gap: 7px;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #dfc2ca;
+}
+
+.dot.active {
+  background: #b5798c;
+  transform: scale(1.3);
+}
+
+/* PAGE 1: ENVELOPE */
+
+.cover {
+  justify-content: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.cover .heading {
+  margin-top: 5px;
+}
+
+.cover-desc {
+  font-size: 12px;
+  line-height: 2;
+  max-width: 300px;
+  color: #a38388;
+}
+
+.envelope-area {
+  width: 220px;
+  height: 155px;
+  margin: 25px auto 12px;
+  position: relative;
+  cursor: pointer;
+  perspective: 700px;
+}
+
+.envelope {
+  position: absolute;
+  inset: 0;
+  background: #e7bdc9;
+  border-radius: 4px;
+  box-shadow: 0 7px 15px #c68e9c55;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f0d1d8;
+  clip-path: polygon(0 0, 50% 55%, 100% 0);
+  z-index: 2;
+  transform-origin: top;
+  transition: transform .7s ease;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d9a8b7;
+  clip-path: polygon(0 100%, 50% 43%, 100% 100%);
+  z-index: 3;
+}
+
+.envelope.open::before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope-letter {
+  position: absolute;
+  width: 82%;
+  height: 80%;
+  background: #fffaf0;
+  top: 8%;
+  left: 9%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  color: #b5798c;
+  transition: transform .8s ease;
+}
+
+.envelope.open .envelope-letter {
+  transform: translateY(-85px);
+}
+
+.seal {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 4;
+  width: 43px;
+  height: 43px;
+  background: #b9788d;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 19px;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  transition: .3s;
+}
+
+/* PAGE 2: PORTRAIT */
+
+.portrait-page {
+  justify-content: flex-start;
+  gap: 15px;
+  padding-top: 55px;
+}
+
+.polaroid {
+  position: relative;
+  width: min(270px, 75%);
+  padding: 12px 12px 45px;
+  background: white;
+  box-shadow: 3px 6px 17px #a87a8240;
+  transform: rotate(-2deg);
+  margin: 15px 0;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 285px;
+  object-fit: cover;
+  display: block;
+  background: #f1dce1;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 9px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  color: #ae7888;
+}
+
+.portrait-text {
+  max-width: 340px;
+  font-size: 13px;
+  line-height: 2;
+  text-align: center;
+  color: #9c7b80;
+}
+
+/* PAGE 3: NOTES */
+
+.notes-page {
+  justify-content: center;
+  gap: 19px;
+}
+
+.notes-grid {
+  width: 100%;
+  max-width: 490px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.note {
+  min-height: 130px;
+  background: #f9e6e7;
+  padding: 23px 14px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 4px 8px #c79fa133;
+  position: relative;
+}
+
+.note:nth-child(2) { transform: rotate(2deg); background: #f6eadb; }
+.note:nth-child(3) { transform: rotate(-2deg); background: #f4e0e8; }
+.note:nth-child(4) { transform: rotate(2deg); background: #f9eddf; }
+
+.note::before {
+  content: "✿";
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 14px;
+  color: #c78e9e;
+}
+
+.note p {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: #9c687b;
+  line-height: 1.3;
+}
+
+/* PAGE 4: LETTER */
+
+.letter-page {
+  justify-content: center;
+}
+
+.letter-paper {
+  width: 100%;
+  max-width: 490px;
+  background: #fffdf7;
+  border: 1px solid #e9d8cc;
+  padding: 32px 25px;
+  box-shadow: 4px 5px 0 #ead6d1;
+  position: relative;
+}
+
+.letter-paper h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 32px;
+  color: #b5798c;
+  margin-bottom: 20px;
+}
+
+.letter-paper p {
+  font-size: 13px;
+  line-height: 2;
+  color: #8e7074;
+  margin-bottom: 15px;
+}
+
+.letter-sign {
+  text-align: right;
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  color: #b5798c;
+  margin-top: 20px;
+}
+
+/* PAGE 5: FINAL */
+
+.final-page {
+  justify-content: center;
+  text-align: center;
+  gap: 17px;
+}
+
+.final-page .heading {
+  font-size: 39px;
+}
+.final-card {
+  background: #f9e8e9;
+  border: 1px dashed #cf9cab;
+  max-width: 390px;
+  width: 100%;
+  padding: 30px 22px;
+  transform: rotate(-1deg);
+}
+
+.final-card p {
+  font-size: 13px;
+  line-height: 2;
+  color: #956d79;
+}
+
+.final-card .handwriting {
+  font-size: 23px;
+  margin-top: 15px;
+  color: #b5798c;
+}
+
+/* MOBILE */
+
+@media(max-width: 500px) {
+  .app { padding: 20px 12px; }
+  .book { min-height: 590px; }
+  .page { padding: 32px 19px 35px; }
+  .polaroid img { height: 260px; }
+  .notes-grid { gap: 12px; }
+  .note { min-height: 120px; padding: 18px 10px; }
+  .note p { font-size: 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="floating f1">✿</div>
+<div class="floating f2">♡</div>
+<div class="floating f3">✧</div>
+
+<main class="app">
+
+  <audio id="bgMusic" loop preload="none">
+    <source src="kasihputih.mp3" type="audio/mpeg">
+  </audio>
+
+  <button
+    id="musicBtn"
+    class="music-toggle"
+    type="button"
+    onclick="toggleMusic()"
+    aria-label="Putar musik"
+    aria-pressed="false"
+    title="Putar / jeda musik"
+  >
+    <span class="vinyl-disc" aria-hidden="true"></span>
+  </button>
+
+
+
+  <div class="topbar">
+    <span>MY LITTLE SCRAPBOOK</span>
+    <span>made with love ♡</span>
+  </div>
+
+  <div class="book">
+
+    <!-- PAGE 1: COVER -->
+    <section class="page active cover" id="page1">
+
+      <span class="sticker one">✿</span>
+      <span class="sticker two">୨୧</span>
+
+      <p class="tiny-label">A SPECIAL EDITION · BIRTHDAY JOURNAL</p>
+
+      <h1 class="heading">
+        Dear My<br>Sunshine
+      </h1>
+
+      <p class="cover-desc">
+        A little book filled with warm wishes,
+        tiny notes, and something made
+        especially for you.
+      </p>
+
+      <div class="envelope-area" onclick="openEnvelope()">
+        <div class="envelope" id="envelope">
+          <div class="envelope-letter">for you ♡</div>
+          <div class="seal">♡</div>
+        </div>
+      </div>
+
+      <p class="handwriting" style="font-size:20px">
+        tap the envelope to open
+      </p>
+
+      <p class="tiny-label">WITH LOVE, JUST FOR YOU</p>
+
+      <span class="page-number">01 / 05</span>
+    </section>
+
+    <!-- PAGE 2: PORTRAIT -->
+    <section class="page portrait-page" id="page2">
+
+      <span class="sticker one">✧</span>
+      <span class="sticker two">♡</span>
+
+      <p class="tiny-label">PAGE TWO · THE BIRTHDAY PERSON</p>
+
+      <h2 class="heading">It's your day!</h2>
+
+      <div class="polaroid">
+        <div class="tape"></div>
+
+        <!-- GANTI DIA.JPG DENGAN FOTO DIA -->
+        <img src="pptnvnt.PNG" alt="Birthday person">
+
+        <div class="polaroid-caption">
+          my sunshine ☀
+        </div>
+      </div>
+
+      <p class="portrait-text">
+        Today, the spotlight belongs to you.
+        Here's a little reminder that your existence
+        is worth celebrating.
+      </p>
+
+      <span class="handwriting" style="font-size:22px">
+        keep being your lovely self ♡
+      </span>
+
+      <span class="page-number">02 / 05</span>
+    </section>
+
+    <!-- PAGE 3: LITTLE NOTES -->
+    <section class="page notes-page" id="page3">
+
+      <span class="sticker one">✿</span>
+      <span class="sticker two">♡</span>
+
+      <p class="tiny-label">PAGE THREE · LITTLE REMINDERS</p>
+
+      <h2 class="heading">Little things...</h2>
+
+      <p style="font-size:12px;color:#a28286;text-align:center">
+        Some things I hope you'll always remember.
+      </p>
+
+      <div class="notes-grid">
+
+        <div class="note">
+          <p>You deserve<br>good things.</p>
+        </div>
+
+        <div class="note">
+          <p>Don't forget<br>to rest.</p>
+        </div>
+
+        <div class="note">
+          <p>Be proud of<br>your progress.</p>
+        </div>
+
+        <div class="note">
+          <p>Keep your<br>little spark.</p>
+        </div>
+
+      </div>
+
+      <p class="handwriting" style="font-size:22px">
+        a few words to keep ♡
+      </p>
+
+      <span class="page-number">03 / 05</span>
+    </section>
+
+    <!-- PAGE 4: LETTER -->
+    <section class="page letter-page" id="page4">
+
+      <span class="sticker one">✿</span>
+      <span class="sticker two">୨୧</span>
+
+      <p class="tiny-label" style="margin-bottom:20px">
+        PAGE FOUR · A LETTER FOR YOU
+      </p>
+
+      <div class="letter-paper">
+
+        <h2>Happy Birthday!</h2>
+
+        <p>Dear my sunshine,</p>
+        <p>
+          Another year, another chapter of your life.
+          I hope this new chapter brings you beautiful
+          opportunities, unexpected happiness,
+          and countless reasons to smile.
+        </p>
+
+        <p>
+          I hope you get closer to your dreams,
+          meet kind people along the way,
+          and never forget how far you've come.
+        </p>
+
+        <p>
+          Even on days when things don't go as planned,
+          I hope you remember that you're doing
+          better than you think.
+        </p>
+
+        <p>
+          May life be gentle with you.
+          Always take care of yourself, okay?
+        </p>
+
+        <div class="letter-sign">
+          With warm wishes, ♡
+        </div>
+
+      </div>
+
+      <span class="page-number">04 / 05</span>
+    </section>
+
+    <!-- PAGE 5: FINAL -->
+    <section class="page final-page" id="page5">
+
+      <span class="sticker one">✿</span>
+      <span class="sticker two">♡</span>
+
+      <p class="tiny-label">THE LAST LITTLE PAGE</p>
+
+      <h2 class="heading">
+        One last wish...
+      </h2>
+
+      <div class="final-card">
+
+        <p>
+          Wherever life takes you,
+          I hope you always find a reason
+          to look forward to tomorrow.
+        </p>
+
+        <p>
+          I hope your heart stays kind,
+          your dreams stay alive,
+          and happiness finds its way to you.
+        </p>
+
+        <div class="handwriting">
+          Happy birthday, sunshine ☀
+        </div>
+
+      </div>
+
+      <p class="handwriting" style="font-size:22px">
+        that's all, for now ♡
+      </p>
+
+      <p class="tiny-label">
+        END OF THIS LITTLE SCRAPBOOK
+      </p>
+
+      <button class="action-btn" onclick="goToPage(1)">
+        ↺ Read again
+      </button>
+
+      <span class="page-number">05 / 05</span>
+    </section>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="nav">
+
+    <button id="prevBtn" onclick="changePage(-1)" disabled>
+      ← Previous
+    </button>
+
+    <div class="dots" id="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <button id="nextBtn" onclick="changePage(1)">
+      Next →
+    </button>
+
+  </div>
+
+  <p class="handwriting" style="margin-top:20px;font-size:19px;color:#ad8290">
+    a little piece of happiness, just for you ♡
+  </p>
+
+</main>
+
+<script>
+
+async function toggleMusic() {
+  const music = document.getElementById("bgMusic");
+  const button = document.getElementById("musicBtn");
+
+  if (music.paused) {
+    try {
+      await music.play();
+      button.classList.add("playing");
+      button.setAttribute("aria-pressed", "true");
+      button.setAttribute("aria-label", "Jeda musik");
+      button.title = "Jeda musik";
+    } catch (error) {
+      alert("Musiknya belum bisa diputar. Pastikan file kasih-putih.mp3 ada satu folder dengan index.html.");
+    }
+  } else {
+    music.pause();
+    button.classList.remove("playing");
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-label", "Putar musik");
+    button.title = "Putar musik";
+  }
+}
+
+
+let currentPage = 1;
+const totalPages = 5;
+
+function showPage(number) {
+
+  currentPage = number;
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page" + number)
+    .classList.add("active");
+
+  document.querySelectorAll(".dot").forEach((dot, index) => {
+    dot.classList.toggle("active", index === number - 1);
+  });
+
+  document.getElementById("prevBtn").disabled =
+    number === 1;
+
+  document.getElementById("nextBtn").disabled =
+    number === totalPages;
+
+}
+
+function changePage(direction) {
+
+  const next = currentPage + direction;
+
+  if (next < 1 || next > totalPages) return;
+
+  showPage(next);
+
+}
+
+function goToPage(number) {
+  showPage(number);
+}
+
+let envelopeOpened = false;
+
+function openEnvelope() {
+
+  if (envelopeOpened) return;
+
+  envelopeOpened = true;
+
+  document.getElementById("envelope")
+    .classList.add("open");
+
+  setTimeout(() => {
+    showPage(2);
+  }, 1100);
+
+}
+
+</script>
+
+</body>
+</html>
